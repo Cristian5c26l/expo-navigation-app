@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 
 import "./global.css"
 import { useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 SplashScreen.preventAutoHideAsync(); // Esto evita que el SplashScreen se quite hasta que las fuentes esten cargadas
 
@@ -24,8 +25,11 @@ const RootLayout = () => {
 
     if (!fontsLoaded && !error) return null;
 
-    return (
-        < Slot />
+    return (// GestureHandlerRootView es necesario para que funcione el Drawer (menu lateral izquierdo)
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            < Slot />
+        </GestureHandlerRootView>
+        // < Slot />
         // <Stack />
     )
 }
